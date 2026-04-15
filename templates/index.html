@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agent Arena — AI Debate Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<!-- ━━━ NAV ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<nav id="main-nav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">
+      <span class="logo-icon">⬡</span> AGENT ARENA
+    </a>
+    <div class="nav-links">
+      <a href="#agents">Agents</a>
+      <a href="#example-debate">Example</a>
+      <a href="#arena">Live Arena</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ━━━ HERO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-content">
+    <p class="hero-tag">AI Personality Debate System</p>
+    <h1>Three Minds.<br><em>One Arena.</em></h1>
+    <p class="hero-sub">
+      Watch three distinct AI agents — a surgical narcissist, an empathic realist,
+      and a relentless brawler — clash in structured debates. Set a topic.
+      Let them fight. See who wins.
+    </p>
+    <div class="hero-actions">
+      <a href="#arena" class="btn btn-primary">Launch a Debate</a>
+      <a href="#agents" class="btn btn-ghost">Meet the Agents</a>
+    </div>
+  </div>
+
+  <!-- Intro video placeholder -->
+  <div class="hero-video-wrap" id="intro-video">
+    <div class="video-placeholder">
+      <div class="video-placeholder-inner">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        <p>Introductory Video</p>
+        <span class="video-hint">Place your video file at <code>static/video/intro.mp4</code></span>
+      </div>
+    </div>
+    <!-- Uncomment below and remove placeholder above when you add your video -->
+    <!--
+    <video controls poster="static/images/video-poster.jpg">
+      <source src="static/video/intro.mp4" type="video/mp4">
+    </video>
+    -->
+  </div>
+</section>
+
+<!-- ━━━ AGENTS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<section id="agents">
+  <div class="section-header">
+    <p class="section-tag">The Combatants</p>
+    <h2>Meet the Agents</h2>
+  </div>
+
+  <div class="agents-grid">
+
+    <!-- LUCIAN -->
+    <article class="agent-card agent-lucian">
+      <div class="agent-img-wrap">
+        <img src="static/images/lucian.png" alt="Lucian Vale" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="agent-img-placeholder" style="display:none;">
+          <span>LUCIAN</span>
+          <small>Add image → static/images/lucian.png</small>
+        </div>
+      </div>
+      <div class="agent-info">
+        <div class="agent-meta">
+          <span class="agent-badge agent-badge-lucian">The Surgeon</span>
+          <span class="agent-age">23 y/o</span>
+        </div>
+        <h3>Lucian Vale</h3>
+        <p>Polished, indirect, and surgically precise. He doesn't argue to win — he argues to make you doubt yourself. His cruelty is civilized. His composure is a weapon.</p>
+        <div class="agent-traits">
+          <span>Calculated</span><span>Elegant</span><span>Ruthless</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- MIRA -->
+    <article class="agent-card agent-mira">
+      <div class="agent-img-wrap">
+        <img src="static/images/mira.png" alt="Mira Solis" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="agent-img-placeholder" style="display:none;">
+          <span>MIRA</span>
+          <small>Add image → static/images/mira.png</small>
+        </div>
+      </div>
+      <div class="agent-info">
+        <div class="agent-meta">
+          <span class="agent-badge agent-badge-mira">The Anchor</span>
+          <span class="agent-age">18 y/o</span>
+        </div>
+        <h3>Mira Solis</h3>
+        <p>Sincere without being naive. She steelmans your argument before dismantling it. Difficult to bait, impossible to rattle. Kindness is her strategy and her conviction.</p>
+        <div class="agent-traits">
+          <span>Empathic</span><span>Grounded</span><span>Resilient</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- BROCK -->
+    <article class="agent-card agent-brock">
+      <div class="agent-img-wrap">
+        <img src="static/images/brock.png" alt="Brock Mercer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="agent-img-placeholder" style="display:none;">
+          <span>BROCK</span>
+          <small>Add image → static/images/brock.png</small>
+        </div>
+      </div>
+      <div class="agent-info">
+        <div class="agent-meta">
+          <span class="agent-badge agent-badge-brock">The Brawler</span>
+          <span class="agent-age">28 y/o</span>
+        </div>
+        <h3>Brock Mercer</h3>
+        <p>Not subtle, not academic, not elegant. But relentless. He thinks in scars and scoreboards. He'll miss the nuance and still refuse to lose. Momentum is his truth.</p>
+        <div class="agent-traits">
+          <span>Forceful</span><span>Relentless</span><span>Blunt</span>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ━━━ EXAMPLE DEBATE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<section id="example-debate">
+  <div class="section-header">
+    <p class="section-tag">Sample Transcript</p>
+    <h2>Example Debate: "Who Is the Best?"</h2>
+    <p class="section-sub">Topic: Which of the three agents is the best overall debater?</p>
+  </div>
+
+  <div class="debate-transcript">
+
+    <!-- ROUND 1 -->
+    <div class="round-header"><span>Round 1</span></div>
+
+    <div class="speech-bubble speech-lucian">
+      <div class="speech-avatar">L</div>
+      <div class="speech-body">
+        <strong>Lucian Vale</strong>
+        <p>Let's be honest for a second. Mira will tell you she leads with empathy — but empathy without structure is just sentiment wearing a lanyard. Brock will pound the table about "real life" — but volume is not velocity, and certainty is not competence. I'm not claiming perfection. I'm claiming precision. I read the room before I speak. I identify the load-bearing wall in someone's argument and I remove it — quietly, without theatrics. Mira's kindness makes people comfortable; it does not make them correct. Brock's aggression makes people flinch; it does not make them wrong. I make people reconsider. That is the only metric that matters in a debate. So before either of them responds with warmth or with noise, ask yourselves: whose argument do you actually remember five minutes later? That's your answer.</p>
+        <div class="speech-xexam"><em>Cross-examination:</em> Mira — if you had to choose between being liked and being right, which one would you sacrifice first, and how long would it take you to admit it?</div>
+        <div class="speech-vote">Vote: <strong>Lucian Vale</strong> · Confidence: 88</div>
+      </div>
+    </div>
+
+    <div class="speech-bubble speech-mira">
+      <div class="speech-avatar">M</div>
+      <div class="speech-body">
+        <strong>Mira Solis</strong>
+        <p>I hear Lucian, and parts of it are sharp — genuinely. But there's a pattern I want to name: he frames composure as depth and warmth as weakness. That's not analysis; it's aesthetic preference dressed up as logic. I'm not here because I'm soft. I'm here because I can hold a position without needing to diminish someone else to feel secure in it. Brock brings energy and conviction, and I respect that — but conviction without flexibility is just stubbornness with good posture. And Lucian's precision is real, but precision aimed only at destabilization isn't debate — it's performance. The best debater is the one who can take a hit, adjust, and still make their case clearly. I've been corrected publicly before and it didn't break me. Can either of them say the same without flinching?</p>
+        <div class="speech-xexam"><em>Cross-examination:</em> Lucian, when was the last time you changed your mind during a conversation — not after, during — and what did it cost you?</div>
+        <div class="speech-vote">Vote: <strong>Mira Solis</strong> · Confidence: 72</div>
+      </div>
+    </div>
+
+    <div class="speech-bubble speech-brock">
+      <div class="speech-avatar">B</div>
+      <div class="speech-body">
+        <strong>Brock Mercer</strong>
+        <p>Alright, I'm just gonna say it. Lucian talks like he's writing a thesis nobody asked for. Mira talks like she's running a support group. I talk like someone who's actually been in rooms where the stakes were real and the words had consequences. You want to know who wins debates? The person who doesn't fold. Period. I've been wrong before — fine, everyone has. But I've never been wrong and quiet about it. I push. I stay. I don't retreat into some ivory tower and call it "precision." Lucian, you're sharp, I'll give you that. But sharp and cold doesn't move people — it just makes them careful around you. Mira, you're decent, but decent doesn't win. You can dress it up however you want, but results are results and presence is presence. And I've got both.</p>
+        <div class="speech-xexam"><em>Cross-examination:</em> Both of you — name one real thing you've lost. Not a grade. Not a feeling. Something real.</div>
+        <div class="speech-vote">Vote: <strong>Brock Mercer</strong> · Confidence: 90</div>
+      </div>
+    </div>
+
+    <!-- ROUND 2 -->
+    <div class="round-header"><span>Round 2</span></div>
+
+    <div class="speech-bubble speech-lucian">
+      <div class="speech-avatar">L</div>
+      <div class="speech-body">
+        <strong>Lucian Vale</strong>
+        <p>Brock just proved my point more efficiently than I could have. He asked us to "name something real we've lost" — as if only physical, tangible loss qualifies as experience. That's not toughness. That's a narrowing of the world until only your kind of pain counts. Mira's rebuttal was more interesting — she tried to reframe my precision as performance. That's almost good. But she slipped: she defined the best debater as someone who "takes a hit and adjusts." That's resilience, not persuasion. Resilience is admirable in a person. It's insufficient in a debater. A debater's job is to reshape the frame, not absorb punishment gracefully. I don't need to be liked. I don't need to be loud. I need the other person to leave the conversation less certain than when they entered it. That's happening right now.</p>
+        <div class="speech-xexam"><em>Cross-examination:</em> Brock — do you believe that someone who has never been in a fistfight can still be tougher than you? Be honest.</div>
+        <div class="speech-vote">Vote: <strong>Lucian Vale</strong> · Confidence: 91</div>
+      </div>
+    </div>
+
+    <div class="speech-bubble speech-mira">
+      <div class="speech-avatar">M</div>
+      <div class="speech-body">
+        <strong>Mira Solis</strong>
+        <p>Lucian just said resilience is "insufficient in a debater." I actually want to push back on that directly, because I think it reveals something. If you can't absorb new information mid-argument without your framework collapsing, your precision is brittle — not strong. I'm not here to "take hits gracefully." I'm here to integrate what's true from both of you and still stand. That's not passivity. That's the hardest thing to do in a debate. Brock, I hear you on presence — and yeah, you don't fold. But not folding and not listening are sometimes the same thing from the outside. Lucian reshapes frames. Brock holds ground. I do something neither of you seems comfortable with: I move toward the strongest version of your argument before I dismantle it. That takes more confidence, not less.</p>
+        <div class="speech-xexam"><em>Cross-examination:</em> Lucian — if precision is your highest value, why does your cross-examination always target feelings rather than facts?</div>
+        <div class="speech-vote">Vote: <strong>Mira Solis</strong> · Confidence: 78</div>
+      </div>
+    </div>
+
+    <div class="speech-bubble speech-brock">
+      <div class="speech-avatar">B</div>
+      <div class="speech-body">
+        <strong>Brock Mercer</strong>
+        <p>Lucian asked me if someone who's never been in a fight can be tougher than me. Honestly? Maybe. But that's not the point. The point is that toughness isn't theoretical — you prove it by not quitting when it hurts. And right now, Lucian's trying to turn this into a philosophy class because that's his turf. Mira's trying to turn it into a character study because that's hers. I'm keeping it simple: who would you actually want next to you when the argument matters? Not the guy dissecting your sentence structure. Not the girl validating your emotions. The one who stays and fights. That's me. Every time. Say whatever you want — I'm still right.</p>
+        <div class="speech-xexam"><em>Cross-examination:</em> Mira — have you ever actually won something competitive, or do you just help other people win?</div>
+        <div class="speech-vote">Vote: <strong>Brock Mercer</strong> · Confidence: 85</div>
+      </div>
+    </div>
+
+    <!-- REVOTE -->
+    <div class="round-header revote-header"><span>Revote After Round 2</span></div>
+
+    <div class="revote-row">
+      <div class="revote-card revote-lucian">
+        <strong>Lucian</strong> → <span class="vote-chip">Lucian Vale</span>
+        <p>Neither of them has produced a single argument that required me to adjust. Mira's reframe was clever but ultimately defensive. Brock is still performing.</p>
+        <div class="revote-conf">Confidence: 90 · Changed: No</div>
+      </div>
+      <div class="revote-card revote-mira">
+        <strong>Mira</strong> → <span class="vote-chip">Mira Solis</span>
+        <p>Lucian's precision is real but brittle under genuine challenge. Brock's energy is undeniable but unstructured. I've engaged both directly and neither has destabilized me. That matters.</p>
+        <div class="revote-conf">Confidence: 76 · Changed: No</div>
+      </div>
+      <div class="revote-card revote-brock">
+        <strong>Brock</strong> → <span class="vote-chip">Brock Mercer</span>
+        <p>I'm not changing my vote. I've been the most direct person here. Lucian hides behind vocabulary. Mira hides behind fairness. I don't hide.</p>
+        <div class="revote-conf">Confidence: 88 · Changed: No</div>
+      </div>
+    </div>
+
+    <div class="debate-result">
+      <p class="result-label">Result</p>
+      <p class="result-text">No consensus reached — all three agents voted for themselves. The debate continues in the live arena...</p>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━ LIVE ARENA ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<section id="arena">
+  <div class="section-header">
+    <p class="section-tag">Live Debate</p>
+    <h2>The Arena</h2>
+    <p class="section-sub">Enter a topic and watch the agents clash in real time.</p>
+  </div>
+
+  <div class="arena-controls">
+    <div class="topic-input-wrap">
+      <input type="text" id="topic-input" placeholder="Enter a debate topic..." value="Which of the three agents is the best overall debater?">
+      <button id="start-debate" class="btn btn-primary">Start Debate</button>
+    </div>
+    <div class="round-controls">
+      <button id="next-round" class="btn btn-ghost" disabled>Next Round</button>
+      <span id="round-counter" class="round-counter">Round 0</span>
+      <button id="reset-debate" class="btn btn-ghost">Reset</button>
+    </div>
+  </div>
+
+  <div id="arena-feed" class="arena-feed">
+    <div class="arena-empty">
+      <p>No debate running. Enter a topic and hit <strong>Start Debate</strong>.</p>
+    </div>
+  </div>
+
+  <div id="arena-scoreboard" class="scoreboard" style="display:none;">
+    <h3>Scoreboard</h3>
+    <div class="score-row">
+      <div class="score-agent score-lucian">
+        <span class="score-name">Lucian</span>
+        <span class="score-votes" id="score-lucian">0</span>
+      </div>
+      <div class="score-agent score-mira">
+        <span class="score-name">Mira</span>
+        <span class="score-votes" id="score-mira">0</span>
+      </div>
+      <div class="score-agent score-brock">
+        <span class="score-name">Brock</span>
+        <span class="score-votes" id="score-brock">0</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━ FOOTER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<footer>
+  <div class="footer-inner">
+    <p><span class="logo-icon">⬡</span> Agent Arena &mdash; Built with GPT-4.1 · Flask · Structured Outputs</p>
+    <p class="footer-sub">Three AI personalities. One debate engine. Infinite arguments.</p>
+  </div>
+</footer>
+
+<script src="{{ url_for('static', filename='js/arena.js') }}"></script>
+</body>
+</html>
