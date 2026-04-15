@@ -1,6 +1,6 @@
 # Agent Arena — AI Debate Platform
 
-Three AI agents with distinct personalities debate any topic you throw at them.
+A fully static website where three AI agents with distinct personalities debate any topic. Runs entirely in the browser via the OpenAI API — no backend needed. Host it on GitHub Pages for free.
 
 | Agent | Archetype | Style |
 |-------|-----------|-------|
@@ -14,128 +14,103 @@ Three AI agents with distinct personalities debate any topic you throw at them.
 
 ```
 agent-arena/
-├── app.py                  # Flask web server + debate API
-├── debate.py               # Standalone CLI debate runner
-├── requirements.txt
-├── prompts/
-│   ├── lucian.txt          # Lucian Vale system prompt
-│   ├── mira.txt            # Mira Solis system prompt
-│   └── brock.txt           # Brock Mercer system prompt
-├── templates/
-│   └── index.html          # Main website template
-├── static/
-│   ├── css/
-│   │   └── style.css
-│   ├── js/
-│   │   └── arena.js        # Live debate frontend logic
-│   ├── images/
-│   │   ├── lucian.png      # ← ADD YOUR AGENT IMAGE
-│   │   ├── mira.png        # ← ADD YOUR AGENT IMAGE
-│   │   └── brock.png       # ← ADD YOUR AGENT IMAGE
-│   └── video/
-│       └── intro.mp4       # ← ADD YOUR INTRO VIDEO
+├── index.html              ← Main page (GitHub Pages entry point)
+├── css/
+│   └── style.css
+├── js/
+│   └── arena.js            ← Debate engine (calls OpenAI directly)
+├── images/
+│   ├── lucian.png           ← ADD YOUR IMAGE
+│   ├── mira.png             ← ADD YOUR IMAGE
+│   └── brock.png            ← ADD YOUR IMAGE
+├── video/
+│   └── intro.mp4            ← ADD YOUR VIDEO
 └── README.md
 ```
 
 ---
 
-## Setup (Local)
+## Setup — GitHub Pages
 
-### 1. Clone / unzip the repo
-
-```bash
-cd agent-arena
-```
-
-### 2. Create a virtual environment
+### 1. Create a GitHub repo
 
 ```bash
-python3 -m venv venv
-source venv/bin/activate        # macOS/Linux
-# venv\Scripts\activate         # Windows
+# In this folder:
+git init
+git add .
+git commit -m "initial commit"
+git branch -M main
+git remote add origin https://github.com/YOUR_USERNAME/agent-arena.git
+git push -u origin main
 ```
 
-### 3. Install dependencies
+### 2. Add your media files
 
+Drop your files into the repo:
+
+- `images/lucian.png` — Lucian Vale portrait
+- `images/mira.png` — Mira Solis portrait
+- `images/brock.png` — Brock Mercer portrait
+- `video/intro.mp4` — Introductory video
+
+Then edit `index.html`:
+- **Delete** the `<div class="video-placeholder">...</div>` block
+- **Uncomment** the `<video>` tag right below it
+
+Commit and push:
 ```bash
-pip install -r requirements.txt
+git add .
+git commit -m "add media"
+git push
 ```
 
-### 4. Set your OpenAI API key
+### 3. Enable GitHub Pages
 
-```bash
-export OPENAI_API_KEY="sk-..."
+1. Go to your repo on GitHub
+2. **Settings** → **Pages** (left sidebar)
+3. Under **Source**, select **Deploy from a branch**
+4. Branch: `main` · Folder: `/ (root)`
+5. Click **Save**
+
+Your site will be live at:
+```
+https://YOUR_USERNAME.github.io/agent-arena/
 ```
 
-### 5. Add your media files
+### 4. Use the Live Arena
 
-Drop your images and video into the right folders:
-
-- `static/images/lucian.png` — Lucian Vale portrait
-- `static/images/mira.png` — Mira Solis portrait
-- `static/images/brock.png` — Brock Mercer portrait
-- `static/video/intro.mp4` — Introductory video
-
-Then uncomment the `<video>` tag in `templates/index.html` (and remove the placeholder `<div>`).
-
-### 6. Run the web server
-
-```bash
-python app.py
-```
-
-Visit **http://localhost:5000** in your browser.
-
-### 7. (Optional) Run a CLI debate
-
-```bash
-python debate.py
-```
-
-This runs the full 8-round debate in your terminal with forced consensus.
-
----
-
-## Deployment
-
-### Render / Railway / Fly.io
-
-1. Push to a GitHub repo
-2. Set environment variable: `OPENAI_API_KEY`
-3. Start command: `gunicorn app:app --bind 0.0.0.0:$PORT`
-
-### Docker (optional)
-
-```dockerfile
-FROM python:3.12-slim
-WORKDIR /app
-COPY . .
-RUN pip install -r requirements.txt
-CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:8000"]
-```
+1. Visit your site
+2. Scroll to **The Arena**
+3. Paste your OpenAI API key (stays in your browser, never stored)
+4. Enter a debate topic
+5. Hit **Start Debate** and watch them clash
 
 ---
 
 ## How It Works
 
-1. **You enter a topic** in the Live Arena
-2. **Each round**: all 3 agents generate a speech + cross-examination + vote (via OpenAI structured outputs)
-3. **Revote phase**: agents can change their vote after seeing all speeches
-4. **Consensus check**: if all 3 vote the same → winner declared
-5. **Otherwise**: next round begins
-6. The scoreboard tracks cumulative votes across rounds
-
-The debate uses GPT-4.1-mini with structured JSON output schemas to keep agents in character and produce parseable results.
+- The **example debate** is pre-recorded and baked into the HTML — no API calls needed to view it
+- The **live arena** calls the OpenAI API directly from your browser using `fetch()`
+- Each round: 3 speeches → 3 revotes → consensus check
+- If all 3 agents vote for the same winner → debate ends
+- Otherwise → next round
+- Uses GPT-4.1-mini with structured JSON outputs to keep agents in character
 
 ---
 
 ## Customization
 
-- **Change the model**: Set `OPENAI_MODEL` env var (default: `gpt-4.1-mini`)
-- **Edit personalities**: Modify files in `prompts/`
-- **Add agents**: Add new prompt files and update `AGENTS` dict in `app.py`
-- **Adjust temperature**: Change `TEMPERATURE` in `app.py` (higher = more creative/chaotic)
+- **Change the model**: Edit `MODEL` in `js/arena.js` (e.g. `gpt-4o`, `gpt-4.1`)
+- **Edit personalities**: Modify the `PROMPTS` object in `js/arena.js`
+- **Add agents**: Add new entries to `PROMPTS` and `AGENTS` in `js/arena.js`
+- **Adjust temperature**: Change `TEMPERATURE` in `js/arena.js`
 
 ---
 
-*Built with Flask, OpenAI Structured Outputs, and three agents who will never agree on anything.*
+## Security Note
+
+Your OpenAI API key is entered in the browser and sent **only** to `api.openai.com`. It is never stored, logged, or sent anywhere else. That said, anyone with access to your browser's dev tools could see it in network requests, so treat this as a personal/demo tool — not a production app with shared keys.
+
+---
+
+*Three AI personalities. One debate engine. Infinite arguments.*
