@@ -41,22 +41,6 @@
     </div>
   </div>
 
-  <!-- Intro video placeholder -->
-  <div class="hero-video-wrap" id="intro-video">
-    <div class="video-placeholder">
-      <div class="video-placeholder-inner">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        <p>Introductory Video</p>
-        <span class="video-hint">Replace this with your <code>video/intro.mp4</code></span>
-      </div>
-    </div>
-    <!-- ▼ UNCOMMENT WHEN YOU ADD YOUR VIDEO, DELETE THE PLACEHOLDER ABOVE ▼ -->
-    <!--
-    <video controls poster="images/video-poster.jpg">
-      <source src="video/intro.mp4" type="video/mp4">
-    </video>
-    -->
-  </div>
 </section>
 
 <!-- ━━━ AGENTS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
@@ -70,12 +54,11 @@
 
     <!-- LUCIAN -->
     <article class="agent-card agent-lucian">
-      <div class="agent-img-wrap">
-        <img src="images/lucian.png" alt="Lucian Vale" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="agent-img-placeholder" style="display:none;">
-          <span>LUCIAN</span>
-          <small>Add image → images/lucian.png</small>
-        </div>
+      <div class="agent-img-wrap agent-media" data-video="static/video/lucian.mp4" data-poster="static/images/lucian.png" role="button" tabindex="0" aria-label="Play Lucian video">
+        <img src="static/images/lucian.png" alt="Lucian Vale">
+        <button class="play-overlay" type="button" aria-label="Play video">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+        </button>
       </div>
       <div class="agent-info">
         <div class="agent-meta">
@@ -92,12 +75,11 @@
 
     <!-- MIRA -->
     <article class="agent-card agent-mira">
-      <div class="agent-img-wrap">
-        <img src="images/mira.png" alt="Mira Solis" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="agent-img-placeholder" style="display:none;">
-          <span>MIRA</span>
-          <small>Add image → images/mira.png</small>
-        </div>
+      <div class="agent-img-wrap agent-media" data-video="static/video/Mira.mp4" data-poster="static/images/mira.png" role="button" tabindex="0" aria-label="Play Mira video">
+        <img src="static/images/mira.png" alt="Mira Solis">
+        <button class="play-overlay" type="button" aria-label="Play video">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+        </button>
       </div>
       <div class="agent-info">
         <div class="agent-meta">
@@ -114,12 +96,11 @@
 
     <!-- BROCK -->
     <article class="agent-card agent-brock">
-      <div class="agent-img-wrap">
-        <img src="images/brock.png" alt="Brock Mercer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="agent-img-placeholder" style="display:none;">
-          <span>BROCK</span>
-          <small>Add image → images/brock.png</small>
-        </div>
+      <div class="agent-img-wrap agent-media" data-video="static/video/Brock.mp4" data-poster="static/images/brock.png" role="button" tabindex="0" aria-label="Play Brock video">
+        <img src="static/images/brock.png" alt="Brock Mercer">
+        <button class="play-overlay" type="button" aria-label="Play video">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+        </button>
       </div>
       <div class="agent-info">
         <div class="agent-meta">
@@ -301,5 +282,25 @@
 </footer>
 
 <script src="js/arena.js"></script>
+<script>
+  document.querySelectorAll('.agent-media').forEach(wrap => {
+    const activate = () => {
+      if (wrap.dataset.active) return;
+      wrap.dataset.active = '1';
+      const video = document.createElement('video');
+      video.src = wrap.dataset.video;
+      video.poster = wrap.dataset.poster;
+      video.controls = true;
+      video.autoplay = true;
+      video.playsInline = true;
+      wrap.replaceChildren(video);
+      video.play().catch(() => {});
+    };
+    wrap.addEventListener('click', activate);
+    wrap.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); }
+    });
+  });
+</script>
 </body>
 </html>
